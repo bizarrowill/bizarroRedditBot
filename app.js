@@ -17,8 +17,9 @@ const client = new Snoostorm(r);
 
 // Configure options for stream: subreddit & results per query
 const streamOpts = {
-    subreddit: 'all',
-    results: 25
+  subreddit: "askreddit",
+  results: 5,
+  pollTime: 300
 };
   
 
@@ -27,5 +28,8 @@ const comments = client.CommentStream(streamOpts);
 
 // On comment, perform whatever logic you want to do
 comments.on('comment', (comment) => {
-    console.log(comment);
+    if (comment.body === "literally") {
+      comment.reply("Literal bot. You don't understand what literally means.");
+    }
+ 
 });
